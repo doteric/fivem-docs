@@ -27,6 +27,14 @@ Example:
 
     stop mymode
 
+### `ensure <resourceName>`
+
+Restarts the resource specified in the argument, if it was started. If it wasn't, starts the resource specified in the argument.
+
+Example:
+
+    ensure my-testing-resource
+
 ### `restart <resourceName>`
 
 Restarts the resource specified in the argument, if it was started.
@@ -56,7 +64,7 @@ Example:
 
 ### `sv_maxClients [newValue]`
 
-A console variable that specifies the maximum amount of clients that the server can normally have, as an integer from 1 to 32.
+A console variable that specifies the maximum amount of clients that the server can normally have, as an integer from 1 to 64.
 
 ### `sv_endpointPrivacy [newValue]`
 
@@ -66,7 +74,21 @@ A boolean variable that, if true, hides player IP addresses from public reports 
 
 A string variable that contains the server host name.
 
+### `sv_authMaxVariance [newValue]`
+
+**Variance** is how likely the user's id will change for a given provider (i.e. 'steam', 'ip', or 'ros').
+
+A console variable as an integer from 1-5 (default 1); from least to most likely to change.
+
+### `sv_authMinTrust [newValue]`
+
+**Trust** is how _unlikely_ it is for the user's identity to be spoofed by a malicious client.
+
+A console variable as an integer from 1-5 (default 5); from least to most trustworthy (5 being a method such as external three-way authentication).
+
 ### `clientkick <id> <reason>`
+
+{{% alert theme="info" %}}This is provided by the **rconlog** resource. {{% /alert %}}
 
 Kicks the client with the specified server ID (as seen in [status](#status "wikilink")) from the server, for the stated reason.
 
@@ -75,6 +97,8 @@ Example:
     clientkick 43 You're a superstitious idiot!
 
 ### `say <message>`
+
+{{% alert theme="info" %}}This is provided by the **chat** resource. {{% /alert %}}
 
 Sends a message in the chat as *console*.
 
